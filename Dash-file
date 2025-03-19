@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Dashboard</h2>
+        <ul>
+            <li class="active">Overview</li>
+            <li>Widgets</li>
+            <li>Charts</li>
+            <li>Tables</li>
+            <li>Forms</li>
+            <li>Notifications</li>
+            <li>Settings</li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header>
+            <h3>Dashboard Overview</h3>
+            <div class="profile">
+                <img src="profile.jpg" alt="Profile">
+                <span>Admin</span>
+            </div>
+        </header>
+
+        <section class="cards">
+            <div class="card">
+                <h5>Current Earnings</h5>
+                <p>$6,468.96</p>
+            </div>
+            <div class="card">
+                <h5>Monthly Sales</h5>
+                <p>82</p>
+            </div>
+            <div class="card">
+                <h5>Wallet Balance</h5>
+                <p>$3,567.80</p>
+            </div>
+        </section>
+
+        <div class="charts-container">
+            <canvas id="salesChart"></canvas>
+            <canvas id="trafficChart"></canvas>
+        </div>
+
+        <div class="recent-activities">
+            <h5>Recent Activities</h5>
+            <ul>
+                <li>Task Updated - 40 mins ago</li>
+                <li>Deal Added - 1 day ago</li>
+                <li>Published Article - 40 mins ago</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+--------CSS------------
+
+
+
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: #121212;
+    color: #fff;
+}
+
+.sidebar {
+    width: 250px;
+    background: #1e1e2f;
+    padding: 20px;
+    height: 100vh;
+    position: fixed;
+}
+
+.sidebar h2 {
+    color: #ff5e57;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    margin: 10px 0;
+    cursor: pointer;
+    background: #28293d;
+    border-radius: 5px;
+}
+
+.sidebar ul li.active {
+    background: #ff5e57;
+}
+
+.main-content {
+    margin-left: 270px;
+    padding: 20px;
+    width: 100%;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1e1e2f;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+}
+
+.profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.card {
+    background: #28293d;
+    padding: 20px;
+    border-radius: 5px;
+    width: 30%;
+    text-align: center;
+}
+
+.charts-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+canvas {
+    width: 45%;
+    background: #1e1e2f;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.recent-activities {
+    background: #28293d;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+
+
+----------JavaScript---------
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Sales Chart
+    var ctx1 = document.getElementById("salesChart").getContext("2d");
+    new Chart(ctx1, {
+        type: "line",
+        data: {
+            labels: ["Jan", "Feb", "Mar", "Apr", "May"],
+            datasets: [{
+                label: "Sales",
+                data: [5000, 10000, 7500, 12000, 9000],
+                borderColor: "#ff5e57",
+                backgroundColor: "rgba(255, 94, 87, 0.2)",
+                borderWidth: 2,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+
+    // Traffic Chart
+    var ctx2 = document.getElementById("trafficChart").getContext("2d");
+    new Chart(ctx2, {
+        type: "doughnut",
+        data: {
+            labels: ["Facebook", "YouTube", "Direct Search"],
+            datasets: [{
+                data: [33, 55, 12],
+                backgroundColor: ["#3b5998", "#ff0000", "#34a853"]
+            }]
+        }
+    });
+});
